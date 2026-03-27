@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticker Studio | Custom Stickers</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f4f4f9; }
+        .editor-container { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-top: 50px; text-align: center; }
+        #preview-area { width: 300px; height: 300px; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; margin: 20px auto; overflow: hidden; position: relative; background: #eee; border-radius: 10px; }
+        #sticker-preview { max-width: 90%; max-height: 90%; filter: drop-shadow(0 0 5px white) drop-shadow(0 0 2px rgba(0,0,0,0.2)); display: none; }
+        .controls { display: flex; flex-direction: column; gap: 10px; }
+        input[type="file"] { margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #6200ee; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #3700b3; }
+    </style>
+</head>
+<body>
+
+    <div class="editor-container">
+        <h1>Sticker Studio</h1>
+        <p>Upload your PNG to see the sticker effect!</p>
+        
+        <div id="preview-area">
+            <img id="sticker-preview" src="#" alt="Your Sticker">
+        </div>
+
+        <div class="controls">
+            <input type="file" id="imageInput" accept="image/*">
+            <button onclick="downloadSticker()">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('sticker-preview');
+
+        imageInput.onchange = evt => {
+            const [file] = imageInput.files;
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.style.display = 'block';
+            }
+        }
+
+        function downloadSticker() {
+            alert("This would typically send the image to your backend for printing!");
+        }
+    </script>
+</body>
+</html>
